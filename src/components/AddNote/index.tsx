@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../common/Button';
 import { Plus } from '@phosphor-icons/react';
 import { COLORS } from '../../utils/constant';
+import useCreateNote from '../../stores/useCreateNote';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const AddNote: React.FC = () => {
   const [showColors, setShowColors] = useState<boolean>(false);
+  const { notes, createNote } = useCreateNote();
+  const [value, setValue] = useLocalStorage("notes", notes);
+
+  useEffect(() => {
+    setValue(notes);
+  }, [notes]);
 
   const handleShowColors = () => {
     setShowColors(!showColors);
   };
 
   const handleSetColor = (color: string) => {
-    console.log(color)
-  };
+    const note = {
+      title: "Note title...",
+      content: "Content here...",
+      color: color,
+    }
 
+    const updatedNotes = [...value, note];
+
+    createNote(updatedNotes);
+    setValue(updatedNotes);
+
+    console.log(color, note);
+  };
 
   return (
     <div className='flex items-center sm:flex-col flex-row-reverse'>

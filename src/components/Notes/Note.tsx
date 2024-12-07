@@ -19,8 +19,8 @@ const Note: React.FC<Props> = ({ className, title, content, color = "#fec971" })
       className={`${className ? className : ""} flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[150px] sm:min-h-[200px]`}
     >
       <div className='flex-1'>
-        <h2 className='font-semibold text-lg mb-2 opacity-80 leading-tight'>{title}</h2>
-        <p className='opacity-70'>{content}</p>
+        <h2 className='font-semibold text-base sm:text-lg mb-2 opacity-80 leading-tight'>{title}</h2>
+        <p className='opacity-70 text-sm sm:text-base'>{content}</p>
       </div>
 
       <div className='flex items-center justify-between'>
