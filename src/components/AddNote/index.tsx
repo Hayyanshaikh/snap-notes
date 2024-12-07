@@ -10,6 +10,11 @@ const AddNote: React.FC = () => {
     setShowColors(!showColors);
   };
 
+  const handleSetColor = (color: string) => {
+    console.log(color)
+  };
+
+
   return (
     <div className='flex items-center sm:flex-col flex-row-reverse'>
       <Button onClick={handleShowColors} className={`!p-0 h-9 w-9 sm:mb-6 transition-all duration-500 ${showColors ? "rotate-[135deg]" : "rotate-0"} active:scale-[0.9]`}>
@@ -19,6 +24,7 @@ const AddNote: React.FC = () => {
         {COLORS?.map((color: string, index: number) => (
           <Button
             key={index}
+            onClick={() => handleSetColor(color)}
             className={`!bg-transparent !p-0 h-4 aspect-square rounded-full overflow-hidden transform transition-all duration-200 ${showColors ? 'scale-100' : 'scale-0'
               }`}
             style={{

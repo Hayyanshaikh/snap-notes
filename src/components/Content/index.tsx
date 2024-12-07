@@ -3,7 +3,7 @@ import Search from '../Search'
 import useSearchFilter from '../../hooks/useSearchFilter';
 import NoteList from '../Notes/NoteList';
 
-const data = [
+const dataset = [
   {
     'id': 1,
     'title': 'JavaScript Basics',
@@ -65,9 +65,6 @@ const data = [
     'tags': ['Frontend', 'Performance', 'Optimization']
   }
 ];
-
-const dataset = [...data, data]
-
 
 const Content: React.FC = () => {
   const { filteredData, setQuery, loading } = useSearchFilter(dataset, "title");

@@ -6,11 +6,18 @@ interface Props {
   className?: string;
   title: string;
   content?: string;
+  color?: string
 }
 
-const Note: React.FC<Props> = ({ className, title, content }) => {
+const Note: React.FC<Props> = ({ className, title, content, color = "#fec971" }) => {
+
   return (
-    <div className={`${className ? className : ""} flex flex-col gap-3 rounded-xl bg-[#fec971] p-5 pb-3 min-h-[150px] sm:min-h-[200px]`}>
+    <div
+      style={{
+        backgroundColor: color,
+      }}
+      className={`${className ? className : ""} flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[150px] sm:min-h-[200px]`}
+    >
       <div className='flex-1'>
         <h2 className='font-semibold text-lg mb-2 opacity-80 leading-tight'>{title}</h2>
         <p className='opacity-70'>{content}</p>
