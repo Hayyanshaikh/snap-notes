@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Search from '../Search';
 import useSearchFilter from '../../hooks/useSearchFilter';
 import NoteList from '../Notes/NoteList';
-import useCreateNote from '../../stores/useCreateNote';
+import useNoteStore from '../../stores/useNoteStore';
 
 const Content: React.FC = () => {
-  const { notes } = useCreateNote();
+  const notes = useNoteStore((state) => state.notes);
   const { filteredData, setQuery, loading } = useSearchFilter(notes, "title");
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
@@ -28,6 +28,8 @@ const Content: React.FC = () => {
   const handleSearch = (query: string) => {
     setQuery(query);
   }
+
+  console.log(filteredData)
 
   return (
     <div>

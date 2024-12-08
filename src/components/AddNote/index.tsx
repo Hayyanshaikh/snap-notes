@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../common/Button';
 import { Plus } from '@phosphor-icons/react';
 import { COLORS } from '../../utils/constant';
-import useCreateNote from '../../stores/useCreateNote';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import useNoteStore from '../../stores/useNoteStore';
 
 const AddNote: React.FC = () => {
   const [showColors, setShowColors] = useState<boolean>(false);
-  const { notes, createNote } = useCreateNote();
-  const [value, setValue] = useLocalStorage("notes", notes);
-
-  useEffect(() => {
-    setValue(notes);
-  }, [notes]);
+  const addNote = useNoteStore((state) => state.addNote);
 
   const handleShowColors = () => {
     setShowColors(!showColors);
@@ -25,12 +19,8 @@ const AddNote: React.FC = () => {
       color: color,
     }
 
-    const updatedNotes = [...value, note];
-
-    createNote(updatedNotes);
-    setValue(updatedNotes);
-
-    console.log(color, note);
+    addNote(note);
+    setShowColors(false);
   };
 
   return (
