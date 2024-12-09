@@ -1,4 +1,3 @@
-
 export function useLocalStorage(key: string, initialValue: any) {
   const getStoredValue = () => {
     try {

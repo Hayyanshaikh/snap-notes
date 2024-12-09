@@ -1,4 +1,4 @@
-import { PencilSimple } from '@phosphor-icons/react';
+import { Check, PencilSimple } from '@phosphor-icons/react';
 import React, { useState } from 'react';
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -12,8 +12,6 @@ interface Props {
 
 const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec971" }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [editedTitle, setEditedTitle] = useState<string>(title);
-  const [editedContent, setEditedContent] = useState<string>(content);
 
   const handleEditMode = () => {
     setEditMode(!editMode);
@@ -31,32 +29,34 @@ const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec97
           <Input
             type="text"
             autoFocus={true}
-            initialValue={editedTitle}
+            initialValue={title}
             placeholder="Edit title"
-            onChange={(value) => setEditedTitle(value)}
+            onChange={(value) => console.log(value)}
             className="p-0 font-semibold text-base sm:text-lg mb-2 opacity-80"
           />
         ) : (
-          <h2 className="font-semibold text-base sm:text-lg mb-2 opacity-80 leading-tight">{editedTitle}</h2>
+          <h2 onDoubleClick={handleEditMode} className="font-semibold text-base sm:text-lg mb-2 opacity-80 leading-tight">{title}</h2>
         )}
 
         {editMode ? (
           <Input
             type="text"
-            initialValue={editedContent}
+            initialValue={content}
             placeholder="Edit content"
-            onChange={(value) => setEditedContent(value)}
+            onChange={(value) => console.log(value)}
             className="p-0 opacity-70 text-sm sm:text-base "
           />
         ) : (
-          <p className="opacity-70 text-sm sm:text-base">{editedContent}</p>
+          <p className="opacity-70 text-sm sm:text-base">{content}</p>
         )}
       </div>
 
       <div className="flex items-center justify-between">
         <p className="text-sm opacity-80">Nov 21,2020</p>
         <Button onClick={handleEditMode}>
-          <PencilSimple weight="fill" />
+          {
+            editMode ? <Check weight="bold" /> : <PencilSimple weight="fill" />
+          }
         </Button>
       </div>
     </div>

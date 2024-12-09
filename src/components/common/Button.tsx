@@ -9,9 +9,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<Props> = ({ children, onClick, className, ...props }) => {
   return (
     <button
-      className={`p-2 rounded-full bg-black text-white flex items-center justify-center ${className}`}
+      className={`p-2 rounded-full transition-all bg-dark text-white flex items-center justify-center ${className}`}
       onClick={onClick}
-      {...props} // Spread other props dynamically
+      {...props}
     >
       {children}
     </button>

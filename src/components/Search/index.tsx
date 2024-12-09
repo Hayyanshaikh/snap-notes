@@ -17,13 +17,13 @@ const Search: React.FC<Props> = ({ onSearch, className }) => {
   return (
     <div className={`${className ? className : ""} relative`} >
       <input
-        className="peer w-full outline-none text-gray-600 font-normal py-2 pr-4 pl-10 border rounded-full focus:border-black"
+        className="peer bg-white dark:bg-light text-dark dark:text-white w-full outline-none font-normal py-2 pr-4 pl-10 border dark:border-light rounded-full focus:border-black dark:focus:border-white/[15%] dark:font-light transition-all"
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleChange}
       />
-      <MagnifyingGlass className="absolute peer-focus:text-black left-4 top-1/2 -translate-y-1/2 text-gray-400" weight="regular" size={18} />
+      <MagnifyingGlass className="absolute transition-all peer-focus:text-dark dark:peer-focus:text-white left-4 top-1/2 -translate-y-1/2 text-gray-400" weight="regular" size={18} />
     </div >
   );
 };

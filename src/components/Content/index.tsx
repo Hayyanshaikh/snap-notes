@@ -5,7 +5,7 @@ import NoteList from '../Notes/NoteList';
 import useNoteStore from '../../stores/useNoteStore';
 
 const Content: React.FC = () => {
-  const notes = useNoteStore((state) => state.notes);
+  const notes = useNoteStore((state: any) => state.notes);
   const { filteredData, setQuery, loading } = useSearchFilter(notes, "title");
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
@@ -29,11 +29,9 @@ const Content: React.FC = () => {
     setQuery(query);
   }
 
-  console.log(filteredData)
-
   return (
-    <div>
-      <div className={`sticky top-0 z-10 py-3 bg-white ${isSticky ? 'shadow-lg' : ''} mb-5 sm:relative sm:shadow-none sm:py-0 sm:mb-0 px-4 sm:px-0`}>
+    <div className='flex flex-col sm:gap-8'>
+      <div className={`sticky top-0 z-10 py-3 transition-all dark:bg-dark bg-white ${isSticky ? 'shadow-lg' : ''} mb-5 sm:relative sm:shadow-none sm:py-0 sm:mb-0 px-4 sm:px-0`}>
         <Search className="w-full sm:w-80" onSearch={handleSearch} />
       </div>
       <NoteList notes={filteredData} isLoading={loading} />
