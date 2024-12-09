@@ -14,4 +14,9 @@ const useDarkModeStore = create((set) => {
   };
 });
 
-export default useDarkModeStore;
+type DarkModeState = {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
+export default useDarkModeStore as () => DarkModeState;
