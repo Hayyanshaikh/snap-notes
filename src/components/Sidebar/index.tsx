@@ -15,7 +15,7 @@ const Sidebar: React.FC<Props> = ({ isDarkMode, toggleDarkMode }) => {
         <h4 className='font-semibold font-outfit text-base capitalize sm:mb-6 transition-all dark:text-white text-dark'>Spads</h4>
         <AddNote />
       </div>
-      <Button onClick={() => toggleDarkMode && toggleDarkMode()} className='bg-black/[10%] dark:bg-light h-9 w-9'>
+      <Button onClick={() => toggleDarkMode && toggleDarkMode()} className='!bg-black/[10%] dark:!bg-light h-9 w-9'>
         {
           isDarkMode ? <Sun size={18} weight='bold' className='text-orange-300' /> :
             <Moon size={18} weight='bold' className='text-dark' />

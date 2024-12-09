@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        "dark": "#1c1a27",
-        "light": "#343045"
+        "dark": "#1c2540",
+        "darker": "#131a31",
+        "light": "#232f54"
       },
       keyframes: {
         zoomIn: {
