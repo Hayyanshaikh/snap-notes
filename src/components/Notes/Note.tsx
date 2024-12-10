@@ -2,27 +2,45 @@ import { Check, PencilSimple } from '@phosphor-icons/react';
 import React, { useState } from 'react';
 import Button from '../common/Button';
 import Input from '../common/Input';
+import Textarea from '../common/Textarea';
+import useNoteStore from '../../stores/useNoteStore';
 
 interface Props {
   className?: string;
   title: string;
+  id: string;
   content?: string;
   color?: string;
+  date?: string;
 }
 
-const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec971" }) => {
+const Note: React.FC<Props> = ({ className, id, date, title, content = "", color = "#fec971" }) => {
+  const editNote = useNoteStore((state: any) => state.editNote);
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [note, setNote] = useState({ title, content });
 
   const handleEditMode = () => {
     setEditMode(!editMode);
   };
+
+  const handleSave = (id: string) => {
+    editNote(id, note);
+    setEditMode(false);
+  }
+
+  const handleChange = (field: "title" | "content", value: string) => {
+    setNote((prevNote) => ({
+      ...prevNote,
+      [field]: value
+    }));
+  }
 
   return (
     <div
       style={{
         backgroundColor: color,
       }}
-      className={`${className ? className : ""} animate-zoom-in flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[150px] sm:min-h-[200px]`}
+      className={`${className ? className : ""} animate-zoom-in flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[200px]`}
     >
       <div className="flex-1">
         {editMode ? (
@@ -31,7 +49,7 @@ const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec97
             autoFocus={true}
             initialValue={title}
             placeholder="Edit title"
-            onChange={(value) => console.log(value)}
+            onChange={(value) => handleChange("title", value)}
             className="p-0 font-semibold text-base sm:text-lg mb-2 opacity-80"
           />
         ) : (
@@ -39,12 +57,12 @@ const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec97
         )}
 
         {editMode ? (
-          <Input
-            type="text"
+          <Textarea
             initialValue={content}
             placeholder="Edit content"
-            onChange={(value) => console.log(value)}
-            className="p-0 opacity-70 text-sm sm:text-base "
+            textareaClassName="leading-tight"
+            onChange={(value) => handleChange("content", value)}
+            className="!p-0 opacity-70 text-sm sm:text-base "
           />
         ) : (
           <p className="opacity-70 text-sm sm:text-base">{content}</p>
@@ -52,14 +70,14 @@ const Note: React.FC<Props> = ({ className, title, content = "", color = "#fec97
       </div>
 
       <div className="flex items-center justify-between">
-        <p className="text-sm opacity-80">Nov 21,2020</p>
-        <Button onClick={handleEditMode}>
+        <p className="text-sm opacity-80">{date}</p>
+        <Button onClick={() => editMode ? handleSave(id) : handleEditMode()}>
           {
-            editMode ? <Check weight="bold" /> : <PencilSimple weight="fill" />
+            editMode ? <Check weight="bold" /> : <PencilSimple weight="bold" />
           }
         </Button>
       </div>
-    </div>
+    </div >
   );
 };
 

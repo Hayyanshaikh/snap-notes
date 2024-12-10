@@ -51,7 +51,7 @@ const Input: React.FC<InputProps> = ({
         name={name}
         disabled={disabled}
         autoFocus={autoFocus}
-        className={inputClassName ? inputClassName : "" + " leading-tight bg-transparent outline-none border-none"}
+        className={`${inputClassName ? inputClassName : ""} w-full leading-tight bg-transparent outline-none border-none`}
       />
     </div>
   );
