@@ -4,6 +4,7 @@ import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import useNoteStore from '../../stores/useNoteStore';
+import Dropdown from '../common/Dropdown';
 
 interface Props {
   className?: string;
@@ -77,7 +78,15 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
           }
         </Button>
       </div>
-    </div >
+      <Dropdown
+        // label="Dropdown"
+        options={[
+          { label: "option 1", value: "option1" },
+          { label: "option 2", value: "option2" },
+        ]}
+        onSelect={(value: string) => console.log(value)}
+      />
+    </div>
   );
 };
 

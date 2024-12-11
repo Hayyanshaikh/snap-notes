@@ -12,6 +12,7 @@ export default {
         "darker": "#131a31",
         "light": "#232f54"
       },
+      "rounded-pill": "100px",
       keyframes: {
         zoomIn: {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
