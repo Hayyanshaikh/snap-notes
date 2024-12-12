@@ -1,10 +1,11 @@
-import { Check, PencilSimple } from '@phosphor-icons/react';
+import { Check, PencilSimple, Trash } from '@phosphor-icons/react';
 import React, { useState } from 'react';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import useNoteStore from '../../stores/useNoteStore';
 import Dropdown from '../common/Dropdown';
+import { COLORS } from '../../utils/constant';
 
 interface Props {
   className?: string;
@@ -16,12 +17,16 @@ interface Props {
 }
 
 const Note: React.FC<Props> = ({ className, id, date, title, content = "", color = "#fec971" }) => {
-  const editNote = useNoteStore((state: any) => state.editNote);
+  const { editNote, deleteNote } = useNoteStore((state: any) => state);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [note, setNote] = useState({ title, content });
 
-  const handleEditMode = () => {
-    setEditMode(!editMode);
+  const handleAction = (value: string) => {
+    if (value === "edit") {
+      setEditMode(!editMode);
+    } else if (value === "delete") {
+      deleteNote(id)
+    }
   };
 
   const handleSave = (id: string) => {
@@ -34,6 +39,14 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
       ...prevNote,
       [field]: value
     }));
+  }
+
+  const handleSetColor = (color: string) => {
+    setNote(prevNote => ({
+      ...prevNote,
+      color: color
+    }));
+    editNote(id, { ...note, color });
   }
 
   return (
@@ -54,7 +67,7 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
             className="p-0 font-semibold text-base sm:text-lg mb-2 opacity-80"
           />
         ) : (
-          <h2 onDoubleClick={handleEditMode} className="font-semibold text-base sm:text-lg mb-2 opacity-80 leading-tight">{title}</h2>
+          <h2 onDoubleClick={() => setEditMode(!editMode)} className="font-semibold text-base sm:text-lg mb-2 opacity-80 leading-tight">{title}</h2>
         )}
 
         {editMode ? (
@@ -71,21 +84,68 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
       </div>
 
       <div className="flex items-center justify-between">
-        <p className="text-sm opacity-80">{date}</p>
-        <Button onClick={() => editMode ? handleSave(id) : handleEditMode()}>
-          {
-            editMode ? <Check weight="bold" /> : <PencilSimple weight="bold" />
-          }
-        </Button>
+        <p className="text-xs opacity-80">{date}</p>
+        {
+          editMode ? (
+            <Button onClick={() => handleSave(id)}>
+              <Check weight="bold" />
+            </Button>
+          ) : (
+            <Dropdown
+              options={[
+                {
+                  label: (
+                    <div className='grid grid-cols-3 gap-y-3 justify-items-center'>
+                      {
+                        COLORS?.map((color: string, index: number) => (
+                          <Button
+                            key={index}
+                            onClick={() => handleSetColor(color)}
+                            className={`!bg-transparent !p-0 h-4 aspect-square rounded-full overflow-hidden`}
+                            style={{
+                              transitionDelay: `${index * 100}ms`,
+                            }}
+                          >
+                            <span
+                              className="h-full w-full"
+                              style={{ backgroundColor: color }}
+                            ></span>
+                          </Button>
+                        ))
+                      }
+                    </div>
+                  ),
+                  value: "",
+                  className: "hover:!bg-transparent"
+                },
+                {
+                  label: (
+                    <div className='flex items-center gap-2'>
+                      <PencilSimple size={15} weight="bold" />
+                      <span>Edit</span>
+                    </div>
+                  ),
+                  value: "edit"
+                },
+                {
+                  label: (
+                    <div className='flex items-center gap-2'>
+                      <Trash size={15} weight="bold" />
+                      <span>Delete</span>
+                    </div>
+                  ),
+                  value: "delete",
+                  className: "border-t hover:!bg-red-500 hover:text-white -mb-1.5"
+                },
+              ]}
+              onSelect={(value) => {
+                handleAction(value);
+              }}
+            />
+          )
+        }
       </div>
-      <Dropdown
-        // label="Dropdown"
-        options={[
-          { label: "option 1", value: "option1" },
-          { label: "option 2", value: "option2" },
-        ]}
-        onSelect={(value: string) => console.log(value)}
-      />
+
     </div>
   );
 };
