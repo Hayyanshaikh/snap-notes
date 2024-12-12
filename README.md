@@ -2,9 +2,7 @@
 
 Welcome to SPADS, your ultimate personal task management system with local storage integration. Below are the features and functionalities this application offers to help you organize your daily tasks and notes effectively while ensuring data persistence.
 
-![enter image description here](https://i.ibb.co/TBXCB6G/Notes.png)
-[![SPADS Dashboard](https://i.ibb.co/TBXCB6G/Notes.png)]([https://your-website-link.com](https://stickypads.netlify.app/))
-
+[![SPADS Dashboard](https://i.ibb.co/TBXCB6G/Notes.png)](https://stickypads.netlify.app/)
 
 ## Features
 
