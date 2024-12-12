@@ -68,7 +68,7 @@ const Textarea: React.FC<TextareaProps> = ({
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleTextareaChange(e.target.value)}
         name={name}
         disabled={disabled}
-        className={`${textareaClassName ? textareaClassName : ''} w-full leading-tight bg-transparent outline-none border-none`}
+        className={`${textareaClassName ? textareaClassName : ''} placeholder-black/50 w-full leading-tight bg-transparent outline-none border-none`}
         rows={minRows}
         style={{ resize: "none", overflow: "hidden" }}
       />

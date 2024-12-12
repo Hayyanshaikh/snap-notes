@@ -54,7 +54,7 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
       style={{
         backgroundColor: color,
       }}
-      className={`${className ? className : ""} animate-zoom-in flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[200px]`}
+      className={`${className ? className : ""} animate-zoom-in flex flex-col gap-3 rounded-xl p-5 pb-3 min-h-[200px] flex-[0_0_300px]`}
     >
       <div className="flex-1">
         {editMode ? (
@@ -74,12 +74,11 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
           <Textarea
             initialValue={content}
             placeholder="Edit content"
-            textareaClassName="leading-tight"
             onChange={(value) => handleChange("content", value)}
-            className="!p-0 opacity-70 text-sm sm:text-base "
+            className="!p-0 opacity-70 text-sm sm:text-base"
           />
         ) : (
-          <p className="opacity-70 text-sm sm:text-base">{content}</p>
+          <p className="opacity-70 !leading-tight text-sm sm:text-base">{content}</p>
         )}
       </div>
 

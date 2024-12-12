@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from './Button';
 import { DotsThreeVertical } from '@phosphor-icons/react';
 
@@ -21,8 +21,22 @@ interface Props {
 const Dropdown: React.FC<Props> = ({ onSelect, options, className, dropdownClassName, labelClassName, label, groupTitle }) => {
   const [activeOptions, setActiveOptions] = useState<boolean>(false);
 
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).closest('.dropdown-container')) {
+        setActiveOptions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <div className={`${className ? className : ""} relative inline-block self-start`}>
+    <div className={`${className ? className : ""} relative inline-block self-start dropdown-container`}>
       <Button className={`${labelClassName}`} onClick={() => setActiveOptions(!activeOptions)}>
         {label || <DotsThreeVertical className='text-white' weight='bold' />}
       </Button>
@@ -33,7 +47,7 @@ const Dropdown: React.FC<Props> = ({ onSelect, options, className, dropdownClass
         {
           options && options?.length > 0 && options?.map((option: Option, index: number) => (
             <button
-              className={`${option.className ? option.className : ""} px-4 py-1.5 text-sm capitalize text-dark hover:bg-black/10 w-full text-left transition-all`}
+              className={`${option.className ? option.className : ""} px-4 py-2 sm:py-1.5 text-xs sm:text-sm capitalize text-dark hover:bg-black/10 w-full text-left transition-all`}
               onClick={() => {
                 onSelect && onSelect(option.value);
                 setActiveOptions(false);
@@ -43,9 +57,8 @@ const Dropdown: React.FC<Props> = ({ onSelect, options, className, dropdownClass
           ))
         }
       </div>
-
     </div>
   )
 }
 
-export default Dropdown
+export default Dropdown;

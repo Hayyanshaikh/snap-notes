@@ -6,7 +6,7 @@ import useNoteStore from '../../stores/useNoteStore';
 
 const Content: React.FC = () => {
   const notes = useNoteStore((state: any) => state.notes);
-  const { filteredData, setQuery, loading } = useSearchFilter(notes, "title");
+  const { filteredData, setQuery, loading } = useSearchFilter(notes, ["title", "content"]);
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
   useEffect(() => {

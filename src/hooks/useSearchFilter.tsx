@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-const useSearchFilter = (data: any, searchKey: string) => {
+const useSearchFilter = (data: any[], searchKeys: string[]) => {
   const [query, setQuery] = useState("");
   const [timeoutId, setTimeoutId] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
@@ -8,9 +8,9 @@ const useSearchFilter = (data: any, searchKey: string) => {
   const filteredData = useMemo(() => {
     if (!query) return data;
     return data.filter((item: any) =>
-      item[searchKey]?.toLowerCase().includes(query.toLowerCase())
+      searchKeys.some(key => item[key]?.toLowerCase().includes(query.toLowerCase()))
     );
-  }, [query, data, searchKey]);
+  }, [query, data, searchKeys]);
 
   const handleQueryChange = (newQuery: string) => {
     if (timeoutId) clearTimeout(timeoutId);
