@@ -29,7 +29,7 @@ const Modal: React.FC<Props> = ({ title, description, isOpen, onConfirm, onClose
         <div className="modal-body mb-6">{children}</div>
         {footer && (
           <div className="modal-footer gap-2 flex justify-end *:flex-1 sm:*:flex-[0_0_auto]">
-            <Button onClick={onClose} className='w-28 bg-black/10 !text-dark'>
+            <Button onClick={onClose} className='w-28 !bg-black/10 !text-dark'>
               No
             </Button>
 
