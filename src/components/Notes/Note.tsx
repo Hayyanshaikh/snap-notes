@@ -6,6 +6,7 @@ import Textarea from '../common/Textarea';
 import useNoteStore from '../../stores/useNoteStore';
 import Dropdown from '../common/Dropdown';
 import { COLORS } from '../../utils/constant';
+import Modal from '../common/Modal';
 
 interface Props {
   className?: string;
@@ -20,12 +21,14 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
   const { editNote, deleteNote } = useNoteStore((state: any) => state);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [note, setNote] = useState({ title, content });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleAction = (value: string) => {
     if (value === "edit") {
       setEditMode(!editMode);
     } else if (value === "delete") {
-      deleteNote(id)
+      setIsModalOpen(true)
     }
   };
 
@@ -47,6 +50,13 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
       color: color
     }));
     editNote(id, { ...note, color });
+  }
+
+  const handleDelete = () => {
+    setIsModalOpen(false);
+    setTimeout(() => {
+      deleteNote(id);
+    }, 100)
   }
 
   return (
@@ -144,6 +154,14 @@ const Note: React.FC<Props> = ({ className, id, date, title, content = "", color
           )
         }
       </div>
+      <Modal
+        title="Delete Item"
+        description="Are you sure you want to delete this item?"
+        isOpen={isModalOpen}
+        onConfirm={handleDelete}
+        onClose={() => setIsModalOpen(false)}
+        footer={true}
+      />
 
     </div>
   );
