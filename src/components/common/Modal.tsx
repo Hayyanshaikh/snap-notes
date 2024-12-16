@@ -17,12 +17,12 @@ const Modal: React.FC<Props> = ({ title, description, isOpen, onConfirm, onClose
     <div
       className={`fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-75 z-50 transition-opacity duration-300 px-4 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-      onClick={isOpen ? onClose : undefined} // Close modal on click outside if isOpen
+      onClick={isOpen ? onClose : undefined}
     >
       <div
         className={`bg-white rounded-xl shadow-lg p-5 sm:p-6 w-[500px] transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-95'
           }`}
-        onClick={(e) => e.stopPropagation()} // Prevent click from reaching outer div
+        onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
         <p className="text-gray-700 mb-6">{description}</p>

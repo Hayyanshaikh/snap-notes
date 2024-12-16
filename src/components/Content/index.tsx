@@ -30,8 +30,8 @@ const Content: React.FC = () => {
   }
 
   return (
-    <div className='flex flex-col sm:gap-8 h-full'>
-      <div className={`sticky top-0 z-10 py-3 transition-all dark:bg-dark bg-white ${isSticky ? 'shadow-lg' : ''} mb-5 sm:relative sm:shadow-none sm:py-0 sm:mb-0 px-4 sm:px-0`}>
+    <div className='flex flex-col h-full'>
+      <div className={`sticky top-0 z-10 py-4 transition-all dark:bg-dark bg-white ${isSticky ? 'shadow-lg' : ''} sm:shadow-none px-4 sm:px-0`}>
         <Search className="w-full sm:w-80" onSearch={handleSearch} />
       </div>
       <NoteList notes={filteredData} isLoading={loading} />

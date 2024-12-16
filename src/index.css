@@ -6,12 +6,11 @@
   font-family: 'Outfit', 'serif';
 }
 
-.note_list::-webkit-scrollbar {
-  width: 5px;
+::-webkit-scrollbar {
+  width: 0px;
 }
 
-.note_list::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #0002;
   border-radius: 10px;
-
 }
