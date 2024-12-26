@@ -5,7 +5,7 @@ import { COLORS } from '../../utils/constant';
 import useNoteStore from '../../stores/useNoteStore';
 
 const AddNote: React.FC = () => {
-  const [showColors, setShowColors] = useState<boolean>(false);
+  const [showColors, setShowColors] = useState<boolean>(true);
   const addNote = useNoteStore((state: any) => state.addNote);
 
   const handleShowColors = () => {
@@ -20,7 +20,6 @@ const AddNote: React.FC = () => {
     }
 
     addNote(note);
-    setShowColors(false);
   };
 
   return (

@@ -31,8 +31,9 @@ const Content: React.FC = () => {
 
   return (
     <div className='flex flex-col h-full'>
-      <div className={`sticky top-0 z-10 py-4 transition-all dark:bg-dark bg-white ${isSticky ? 'shadow-lg' : ''} sm:shadow-none px-4 sm:px-0`}>
+      <div className={`sticky top-0 z-10 py-4 flex items-center justify-between gap-5 transition-all dark:bg-dark bg-white ${isSticky ? 'shadow-lg' : ''} sm:shadow-none px-4 sm:px-0`}>
         <Search className="w-full sm:w-80" onSearch={handleSearch} />
+        <p className='text-white flex-[0_0_auto] text-sm sm:text-base'>Total Notes: <span className='font-medium'>{`${filteredData?.length}`.padStart(2, '0')}</span></p>
       </div>
       <NoteList notes={filteredData} isLoading={loading} />
     </div>
