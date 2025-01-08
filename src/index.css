@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Outfit', 'serif';
+  font-family: "Roboto", serif;
 }
 
 ::-webkit-scrollbar {

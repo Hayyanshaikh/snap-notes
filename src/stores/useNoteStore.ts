@@ -35,7 +35,7 @@ const useNoteStore = create((set) => {
         const filteredNotes = state.notes.filter((note: any) => note.id !== id);
         setStoredValue(filteredNotes);
         return { notes: filteredNotes }
-      })
+      });
     }
   };
 });

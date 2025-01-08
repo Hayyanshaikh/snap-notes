@@ -9,7 +9,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<Props> = ({ children, onClick, className, ...props }) => {
   return (
     <button
-      className={`p-2 rounded-full transition-all text-sm sm:text-base bg-dark text-white flex items-center justify-center ${className}`}
+      className={`p-2 rounded-full transition-all text-sm sm:text-base bg-[#0001] dark:bg-[#fff2] text-darker dark:text-white flex items-center justify-center ${className}`}
       onClick={onClick}
       {...props}
     >

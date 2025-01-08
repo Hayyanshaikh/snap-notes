@@ -37,8 +37,8 @@ const Dropdown: React.FC<Props> = ({ onSelect, options, className, dropdownClass
 
   return (
     <div className={`${className ? className : ""} relative inline-block self-start dropdown-container`}>
-      <Button className={`${labelClassName}`} onClick={() => setActiveOptions(!activeOptions)}>
-        {label || <DotsThreeVertical className='text-white' weight='bold' />}
+      <Button className={`${labelClassName} h-6 !bg-transparent !p-0`} onClick={() => setActiveOptions(!activeOptions)}>
+        {label || <DotsThreeVertical size={20} weight='bold' />}
       </Button>
       <div className={`${dropdownClassName ? dropdownClassName : ""} absolute min-w-36 bg-white shadow-lg rounded-md py-2 flex flex-col items-start transition ease-in-out duration-[100ms] origin-bottom-right bottom-full right-0 mb-2 overflow-hidden z-10 ${activeOptions ? "scale-100" : "scale-0"}`}>
         {

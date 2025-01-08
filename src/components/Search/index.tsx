@@ -17,7 +17,7 @@ const Search: React.FC<Props> = ({ onSearch, className }) => {
   return (
     <div className={`${className ? className : ""} relative`} >
       <input
-        className="peer bg-white dark:bg-light text-dark dark:text-white w-full outline-none font-normal py-2 pr-4 pl-10 border border-black/20 dark:border-light rounded-full focus:border-black dark:focus:border-white/[15%] dark:font-light transition-all"
+        className="peer bg-white dark:bg-light text-dark dark:text-white w-full outline-none font-normal py-2 pr-4 pl-10 border rounded-full border-[#0002] dark:border-[#fff1] dark:font-light transition-all"
         type="text"
         placeholder="Search..."
         value={query}

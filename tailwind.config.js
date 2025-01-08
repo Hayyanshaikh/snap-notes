@@ -8,9 +8,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "dark": "#1c2540",
-        "darker": "#131a31",
-        "light": "#232f54"
+        "dark": "#1d2125",
+        "darker": "#161a1d",
+        "light": "#1d2429",
+        "primary": "#579dff"
       },
       "rounded-pill": "100px",
       keyframes: {

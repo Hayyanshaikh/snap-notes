@@ -20,11 +20,11 @@ const Modal: React.FC<Props> = ({ title, description, isOpen, onConfirm, onClose
       onClick={isOpen ? onClose : undefined}
     >
       <div
-        className={`bg-white rounded-xl shadow-lg p-5 sm:p-6 w-[500px] transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-95'
+        className={`bg-white rounded-md shadow-lg p-5 sm:p-6 w-[500px] transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-95'
           }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-xl font-semibold mb-4">{title}</h2>
+        <h2 className="text-darker text-xl font-semibold mb-4">{title}</h2>
         <p className="text-gray-700 mb-6">{description}</p>
         <div className="modal-body mb-6">{children}</div>
         {footer && (
@@ -33,7 +33,7 @@ const Modal: React.FC<Props> = ({ title, description, isOpen, onConfirm, onClose
               No
             </Button>
 
-            <Button onClick={onConfirm} className='w-28 bg-red-500'>
+            <Button onClick={onConfirm} className='w-28 !text-white dark:!text-white !bg-red-500'>
               Yes
             </Button>
           </div>
